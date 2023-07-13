@@ -1,0 +1,25 @@
+{% extends "includes/layout.html" %}
+{% load static %}
+{% block content %}
+         <div class="section account-box">
+            <div class="blue-dark"></div>
+            <div class="light-blue-grad"></div>
+            <div class="container">
+               <div class="row">
+                  <div class="col-lg-8 col-lg-offset-2">
+                      {% include 'includes/messages.html' %}
+                     <div class="blue-form">
+                        <h2>Kullanıcı Girişi Yap</h2>
+                        <form method="post" class="form-inline">
+                            {% csrf_token %}
+                           {{ form.eposta }}
+                            <br> <br>
+                            {{ form.sifre }}
+                           <button type="submit" class="view-btn">Giriş Yap</button>
+                        </form>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+{% endblock %}

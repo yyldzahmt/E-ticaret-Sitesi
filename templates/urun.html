@@ -1,0 +1,118 @@
+{% extends "includes/layout.html" %}
+{% load static %}
+{% block content %}
+
+    <div class="product-page-main">
+
+        <div class="container">
+        {% include 'includes/messages.html' %}
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="prod-page-title">
+                        <h2>{{ urun.urunadi }}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-md-2 col-sm-4">
+                    <div class="left-profile-box-m prod-page">
+
+
+                        <div class="pof-text">
+                            <h3>{{ urun.kategori.kategoriadi }}</h3>
+                        </div>
+                        <a href="/kategori/{{ urun.kategori.id }}">Kategoriye Git</a>
+                    </div>
+                </div>
+                <div class="col-md-7 col-sm-8">
+                    <div class="md-prod-page">
+                        <div class="md-prod-page-in">
+                            <div class="page-preview">
+                                <div class="preview">
+                                    <div class="preview-pic tab-content">
+                                        <div class="tab-pane active" id="pic-1"><img src="/media/{{ urun.urunresmi }}"
+                                                                                     alt="#"/></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="description-box">
+                            <div class="dex-a">
+                                <h4>Ürün Açıklamaları</h4>
+                                {{ urun.urunaciklamasi }}
+                            </div>
+                            <div class="spe-a">
+                                <h4>Diğer Özellikler</h4>
+                                <ul>
+                                    <li class="clearfix">
+                                        <div class="col-md-4">
+                                            <h5>Kargo Ücreti</h5>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <p>
+                                                {% if urun.kargoucreti == 0 %}
+                                                    Kargo Ücretsiz!
+                                                {% else %}
+                                                    {{ urun.kargoucreti }}
+                                                {% endif %}
+                                            </p>
+                                        </div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <div class="col-md-4">
+                                            <h5>Garanti Durumu</h5>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <p>
+                                                {% if urun.kargoucreti == 0 %}
+                                                    Garantisi yok
+                                                {% else %}
+                                                    {{ urun.garanti }}
+                                                {% endif %}
+                                            </p>
+                                        </div>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-12">
+                    <div class="price-box-right">
+                        <h4>Fiyat</h4>
+                        <h3>{{ urun.fiyat }} TL</h3>
+                        {% if request.user.is_authenticated %}
+                        <p>Adet</p>
+                    <form method="post">
+                    {% csrf_token %}
+                        <select name="adet" class="form-control select2">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                        </select>
+                        <input type="submit" value="Sepete Ekle">
+                    </form>
+                        {% else %}
+                            Satın almak için Kayıt Olun yada Giriş Yapın.
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

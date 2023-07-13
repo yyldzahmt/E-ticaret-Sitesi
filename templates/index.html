@@ -1,0 +1,31 @@
+{% extends "includes/layout.html" %}
+{% load static %}
+{% block content %}
+    <div class="page-content-product">
+        <div class="main-product">
+            <div class="container">
+                <div class="row clearfix">
+                    <div class="find-box">
+                        {% include 'includes/messages.html' %}
+                        <h1>KATEGORİLER</h1>
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    {% for kategori in kategoriler %}
+                        <div class="col-lg-3 col-sm-6 col-md-3">
+                            <a href="/kategori/{{ kategori.id }}">
+                                <div class="box-img">
+                                    <h4>{{ kategori.kategoriadi }}</h4>
+                                    <img height="200" width="150" src='/media/{{ kategori.kategoriresmi }}' alt=""/>
+                                </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

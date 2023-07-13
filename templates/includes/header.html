@@ -1,0 +1,95 @@
+{% load static %}
+<header id="header" class="top-head">
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4 col-sm-12 left-rs">
+                    <div class="navbar-header">
+                        <button type="button" id="top-menu" class="navbar-toggle collapsed" data-toggle="collapse"
+                                data-target="#navbar" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+
+                        <a href="/" class="navbar-brand"><img src="/media/{{ ayarlar.logo }}" alt=""/></a>
+                    </div>
+
+                </div>
+                {% if request.user.is_authenticated %}
+                    <div class="col-md-8 col-sm-12">
+                        <div class="right-nav">
+                            <div class="login-sr">
+                                <div class="login-signup">
+                                    <ul>
+                                        <li><a data-toggle="modal"
+                                               href="#">Hoşgeldin, {{ request.user.first_name }} {{ request.user.last_name }}</a>
+                                        </li>
+                                        <li><a data-toggle="modal" class="custom-b" href="/cikis">Çıkış Yap</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="help-r hidden-xs">
+                                <div class="help-box">
+                                    <ul>
+                                        <li><a data-toggle="modal" data-target="#myModal" href="#"> <span>Sepetim</span>
+                                        </a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                {% else %}
+                    <div class="col-md-8 col-sm-12">
+                        <div class="right-nav">
+                            <div class="login-sr">
+                                <div class="login-signup">
+                                    <ul>
+                                        <li><a data-toggle="modal" href="/giris">Giriş Yap</a></li>
+                                        <li><a data-toggle="modal" class="custom-b" href="/kayit">Kayıt Ol</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+
+            </div>
+        </div>
+        <!--/.container-fluid -->
+    </nav>
+</header>
+
+{% if request.user.is_authenticated %}
+
+    <div class="modal fade lug" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Sepetim</h4>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                        {% if sepet|length == 0 %}
+                            <li>Sepet boş.</li>
+                        {% else %}
+                            {% for urun in sepet %}
+                                <li><h3><a href="/urun/{{ urun.urun.id }}">{{ urun.urun.urunadi }} | {{ urun.adet }}
+                                    | Adet Fiyatı {{ urun.urun.fiyat }}TL, Toplam {{ urun.toplamfiyat }}</a></h3><a href="/sepettensil/{{ urun.id }}"><input type="submit" value="SİL"></a></li>
+                                <br><br>
+                            {% endfor %}
+                        {% endif %}
+                    </ul>
+                    Toplam Tutar {{ sepettutari }} <input type="submit" value="Ödemeye Git"> <a href="/sepetibosalt"><input type="submit" value="Sepeti Boşalt"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endif %}
+

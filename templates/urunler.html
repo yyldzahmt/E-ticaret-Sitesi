@@ -1,0 +1,46 @@
+{% extends "includes/layout.html" %}
+{% load static %}
+{% block content %}
+    <div class="page-content-product">
+        <div class="main-product">
+            <div class="container">
+                <div class="row clearfix">
+                    <div class="find-box">
+                        <h1>{{ kategoribilgileri.kategoriadi }}</h1>
+                    </div>
+                </div>
+                <div class="row clearfix">
+
+                    <div class="similar-box">
+                        <div class="row cat-pd">
+                            {% for urun in urunler %}
+                                <div class="col-md-6">
+                                    <div class="small-box-c">
+                                        <div class="small-img-b">
+                                            <a href="/urun/{{ urun.id }}"><img class="img-responsive"
+                                                                               src="/media/{{ urun.urunresmi }}"
+                                                                               alt="#"/></a>
+
+                                        </div>
+                                        <div class="dit-t clearfix">
+                                            <div class="left-ti">
+                                                <h4><a href="/urun/{{ urun.id }}">{{ urun.urunadi }}</a></h4>
+                                            </div>
+                                            <a href="/urun/{{ urun.id }}" tabindex="0">{{ urun.fiyat }}TL</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}

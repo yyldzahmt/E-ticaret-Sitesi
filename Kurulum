@@ -1,0 +1,11 @@
+manage.py nin olduğu dizinde (yada farklı bir dizinde olabilir ama python ile manage.py çalıştırılacak şekilde komut verilerek) şu komutlar çalıştırılmalı;
+
+
+
+python manage.py makemigrations
+python manage.py migrate
+ --yukarıdaki 2 komut admin tablolarını ve modelleri veri tabanına geçirir.
+
+python manage.py createsuperuser  -> admin kullanıcısı oluşturur.Komut çalıştıktan sonra kullanıcı adı vs sorar.
+python manage.py runserver -> sistemi çalıştırır.
+
